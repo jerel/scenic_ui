@@ -174,7 +174,11 @@ defmodule ScenicUI.Keyboard do
 
   defp build_layout(%{keyboard: keyboard, layout: layout}, selected_layout) do
     graph =
-      Graph.build(font_size: keyboard.font_size, translate: {0, Map.get(keyboard, :top, keyboard.c_height - keyboard.height)}, hidden: false)
+      Graph.build(
+        font_size: keyboard.font_size,
+        translate: {0, Map.get(keyboard, :top, keyboard.c_height - keyboard.height)},
+        hidden: false
+      )
       |> rect({keyboard.c_width, keyboard.height}, keyboard.style)
       |> build_row(layout, keyboard, 0)
   end
@@ -239,6 +243,6 @@ defmodule ScenicUI.Keyboard do
   @doc false
   def num_pad_btn_style("+", keyboard), do: [height: keyboard.btn_height * 2 + keyboard.margin, width: keyboard.c_width * 0.05]
   def num_pad_btn_style("Enter", keyboard), do: [height: keyboard.btn_height * 2 + keyboard.margin, width: keyboard.c_width * 0.05]
-  def num_pad_btn_style("0", keyboard), do: [width: (keyboard.c_width * 0.05 * 2) + keyboard.margin]
+  def num_pad_btn_style("0", keyboard), do: [width: keyboard.c_width * 0.05 * 2 + keyboard.margin]
   def num_pad_btn_style(_char, keyboard), do: [width: keyboard.c_width * 0.05]
 end
